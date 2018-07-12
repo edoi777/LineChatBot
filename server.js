@@ -29,6 +29,7 @@ app.post('/webhook', line.middleware(config), (req, res) => {
     Promise
         .all(req.body.events.map(handleEvent))
         .then((result) => res.json(result));
+    console.log(res);
 });
 
 // event handler
