@@ -9,23 +9,35 @@ const config = {
 };
 
 
-const app = express();
+const client = new line.Client(config);
+
 app.post('/webhook', line.middleware(config), (req, res) => {
     Promise
         .all(req.body.events.map(handleEvent))
         .then((result) => res.json(result));
 });
 
-const client = new line.Client(config);
 function handleEvent(event) {
-    if (event.type !== 'message' || event.message.type !== 'text') {
+
+    console.log(event);
+    if (event.type === 'message' && event.message.type === 'text') {
+        handleMessageEvent(event);
+    } else {
         return Promise.resolve(null);
     }
-
-    return client.replyMessage(event.replyToken, {
-        type: 'text',
-        text: event.message.text
-    });
 }
 
-app.listen(3000);
+function handleMessageEvent(event) {
+    var msg = {
+        type: 'text',
+        text: '??????????'
+    };
+
+    return client.replyMessage(event.replyToken, msg);
+}
+
+app.set('port', (process.env.PORT || 5000));
+
+app.listen(app.get('port'), function () {
+    console.log('run at port', app.get('port'));
+});
