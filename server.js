@@ -1,13 +1,16 @@
 'use strict';
 
-const express = require('express');
 const line = require('@line/bot-sdk');
+const express = require('express');
 
+const defaultAccessToken = 'zaKwcTFahinrF8TlU7lu0/wUaNiFwFq32yKM/Wllt4gczGLU/5qLWF5CJLSfbadDFPFishj7/aIMFAges23hAsZI6YRIKEEkTKa/ztVSECm/ggXZi1Btrk2lOwxHxWoXlHBuAfR49ofREcAiQIBheAdB04t89/1O/w1cDnyilFU=';
+const defaultSecret = 'aa4e48ba5b1b8eb471d0d9ebca1b46a2';
+
+// create LINE SDK config from env variables
 const config = {
-    channelAccessToken: 'zaKwcTFahinrF8TlU7lu0/wUaNiFwFq32yKM/Wllt4gczGLU/5qLWF5CJLSfbadDFPFishj7/aIMFAges23hAsZI6YRIKEEkTKa/ztVSECm/ggXZi1Btrk2lOwxHxWoXlHBuAfR49ofREcAiQIBheAdB04t89/1O/w1cDnyilFU=',
-    channelSecret: 'aa4e48ba5b1b8eb471d0d9ebca1b46a2'
+    channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN || defaultAccessToken,
+    channelSecret: process.env.CHANNEL_SECRET || defaultSecret,
 };
-
 
 // create LINE SDK client
 const client = new line.Client(config);
