@@ -1,0 +1,12 @@
+{
+  "name": "line-chat-bot",
+  "version": "0.0.0",
+  "description": "LineChatBot",
+  "main": "server.js",
+  "author": {
+    "name": "Join"
+  },
+  "dependencies": {
+    "@line/bot-sdk": "^6.1.0"
+  }
+}
