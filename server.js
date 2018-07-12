@@ -1,8 +1,7 @@
 'use strict';
 
 const express = require('express');
-//const line = require('@line/bot-sdk');
-const middleware = require('@line/bot-sdk').middleware
+const line = require('@line/bot-sdk');
 
 const config = {
     channelAccessToken: 'zaKwcTFahinrF8TlU7lu0/wUaNiFwFq32yKM/Wllt4gczGLU/5qLWF5CJLSfbadDFPFishj7/aIMFAges23hAsZI6YRIKEEkTKa/ztVSECm/ggXZi1Btrk2lOwxHxWoXlHBuAfR49ofREcAiQIBheAdB04t89/1O/w1cDnyilFU=',
@@ -21,9 +20,30 @@ app.get('/', (req, res) => {
     res.send('Hello World!');
 });
 
-app.post('/webhook', middleware(config), (req, res) => {
-    res.json(req.body.events) // req.body will be webhook event object
-})
+// register a webhook handler with middleware
+// about the middleware, please refer to doc
+app.post('/webhook', line.middleware(config), (req, res) => {
+    Promise
+        .all(req.body.events.map(handleEvent))
+        .then((result) => res.json(result));
+});
 
-app.listen(8080)
+// event handler
+function handleEvent(event) {
+    if (event.type !== 'message' || event.message.type !== 'text') {
+        // ignore non-text-message event
+        return Promise.resolve(null);
+    }
 
+    // create a echoing text message
+    const echo = { type: 'text', text: event.message.text };
+
+    // use reply API
+    return client.replyMessage(event.replyToken, echo);
+}
+
+// listen on port
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+    console.log(`listening on ${port}`);
+});
