@@ -25,5 +25,5 @@ app.post('/webhook', middleware(config), (req, res) => {
     res.json(req.body.events) // req.body will be webhook event object
 })
 
-app.listen(4000)
+app.listen(8080)
 
