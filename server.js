@@ -25,26 +25,8 @@ app.get('/', (req, res) => {
 
 // register a webhook handler with middleware
 // about the middleware, please refer to doc
-app.post('/webhook', line.middleware(config), (req, res) => {
-    Promise
-        .all(req.body.events.map(handleEvent))
-        .then((result) => res.json(result));
-    console.log(res);
-});
 
-// event handler
-function handleEvent(event) {
-    if (event.type !== 'message' || event.message.type !== 'text') {
-        // ignore non-text-message event
-        return Promise.resolve(null);
-    }
-
-    // create a echoing text message
-    const echo = { type: 'text', text: event.message.text };
-
-    // use reply API
-    return client.replyMessage(event.replyToken, echo);
-}
+app.post('/webhook', line.middleware(config), (req, res) => res.sendStatus(200))
 
 // listen on port
 const port = process.env.PORT || 3000;
