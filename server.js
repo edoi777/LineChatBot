@@ -3,13 +3,10 @@
 const line = require('@line/bot-sdk');
 const express = require('express');
 
-const defaultAccessToken = 'zaKwcTFahinrF8TlU7lu0/wUaNiFwFq32yKM/Wllt4gczGLU/5qLWF5CJLSfbadDFPFishj7/aIMFAges23hAsZI6YRIKEEkTKa/ztVSECm/ggXZi1Btrk2lOwxHxWoXlHBuAfR49ofREcAiQIBheAdB04t89/1O/w1cDnyilFU=';
-const defaultSecret = 'aa4e48ba5b1b8eb471d0d9ebca1b46a2';
-
 // create LINE SDK config from env variables
 const config = {
-    channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN || defaultAccessToken,
-    channelSecret: process.env.CHANNEL_SECRET || defaultSecret,
+    channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN,
+    channelSecret: process.env.CHANNEL_SECRET,
 };
 
 // create LINE SDK client
@@ -25,8 +22,29 @@ app.get('/', (req, res) => {
 
 // register a webhook handler with middleware
 // about the middleware, please refer to doc
+app.post('/callback', line.middleware(config), (req, res) => {
+    Promise
+        .all(req.body.events.map(handleEvent))
+        .then((result) => res.json(result))
+        .catch((err) => {
+            console.error(err);
+            res.status(500).end();
+        });
+});
 
-app.post('/webhook', line.middleware(config), (req, res) => res.sendStatus(200))
+// event handler
+function handleEvent(event) {
+    if (event.type !== 'message' || event.message.type !== 'text') {
+        // ignore non-text-message event
+        return Promise.resolve(null);
+    }
+
+    // create a echoing text message
+    const echo = { type: 'text', text: event.message.text };
+
+    // use reply API
+    return client.replyMessage(event.replyToken, echo);
+}
 
 // listen on port
 const port = process.env.PORT || 3000;
