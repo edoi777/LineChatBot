@@ -9,35 +9,41 @@ const config = {
 };
 
 
+// create LINE SDK client
 const client = new line.Client(config);
 
+// create Express app
+// about Express itself: https://expressjs.com/
+const app = express();
+
+app.get('/', (req, res) => {
+    res.send('Hello World!');
+});
+
+// register a webhook handler with middleware
+// about the middleware, please refer to doc
 app.post('/webhook', line.middleware(config), (req, res) => {
     Promise
         .all(req.body.events.map(handleEvent))
         .then((result) => res.json(result));
 });
 
+// event handler
 function handleEvent(event) {
-
-    console.log(event);
-    if (event.type === 'message' && event.message.type === 'text') {
-        handleMessageEvent(event);
-    } else {
+    if (event.type !== 'message' || event.message.type !== 'text') {
+        // ignore non-text-message event
         return Promise.resolve(null);
     }
+
+    // create a echoing text message
+    const echo = { type: 'text', text: event.message.text };
+
+    // use reply API
+    return client.replyMessage(event.replyToken, echo);
 }
 
-function handleMessageEvent(event) {
-    var msg = {
-        type: 'text',
-        text: '??????????'
-    };
-
-    return client.replyMessage(event.replyToken, msg);
-}
-
-app.set('port', (process.env.PORT || 5000));
-
-app.listen(app.get('port'), function () {
-    console.log('run at port', app.get('port'));
+// listen on port
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+    console.log(`listening on ${port}`);
 });
