@@ -1,22 +1,141 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <aiml version="2.0">
+  <category>
+    <pattern>ดีจ้า</pattern>
+    <template>
+      <random>
+        <li>ดีจ้า</li>
+        <li>หวัดดี</li>
+        <li>สวัสดี</li>
+        <li>ดีๆ</li>
+      </random>
+    </template>
+  </category>
 
   <category>
-    <pattern>สวัสดี *</pattern>
-    <template>สวัสดีค่ะ</template>
+    <pattern>หวัดดี</pattern>
+    <random>
+      <li>ดีจ้า</li>
+      <li>หวัดดี</li>
+      <li>สวัสดี</li>
+      <li>ดีๆ</li>
+    </random>
   </category>
-    <category>
-        <pattern>HELLO</pattern>
-        <template>Hello!</template>
-    </category>
 
-    <category>
-        <pattern>WHO ARE YOU</pattern>
-        <template>I am HelloBot</template>
-    </category>
-    
-    <category>
-        <pattern>I LIKE *</pattern>
-        <template>I like <star/> too.</template>
-    </category>
+  <category>
+    <pattern>ดี</pattern>
+    <template>อืม</template>
+  </category>
+
+  <category>
+    <pattern>* ใคร *</pattern>
+    <random>
+      <li>ความจำสั้นหรอ</li>
+      <li>แค่นี้ทำเป็นลืม</li>
+      <li>ทายมาสิ</li>
+      <li>จอยไงจำไม่ได้หรอ</li>
+    </random>
+  </category>
+
+  <category>
+    <pattern>*</pattern>
+    <template>คืออะไร ไม่เข้าใจ</template>
+  </category>
+
+  <category>
+    <pattern>555 *</pattern>
+    <random>
+      <li>ขำไรหรอ</li>
+      <li>ไม่ตลกนะ</li>
+      <li>555</li>
+    </random>
+  </category>
+
+  <category>
+    <pattern>เบื่อ</pattern>
+    <template>เบื่อไรอ่ะ</template>
+  </category>
+
+  <category>
+    <pattern>เบื่อ *</pattern>
+    <template>
+      <srai>
+        เบื่อ <star/> ทำไม
+      </srai>
+    </template>
+  </category>
+
+  <category>
+    <pattern>* เบื่อ *</pattern>
+    <template>
+      <srai>เจอกันหน่อยมั้ย</srai>
+    </template>
+  </category>
+
+  <category>
+    <pattern>ง่วงจุง</pattern>
+    <template>นอนสิ รอไร</template>
+  </category>
+
+  <category>
+    <pattern>หิวจุง</pattern>
+    <random>
+      <li>หิวก็กินสิ</li>
+      <li>ไปหาไรกินกัน</li>
+      <li>กินไรดี</li>
+    </random>
+  </category>
+
+  <category>
+    <pattern>ทำไร *</pattern>
+    <random>
+      <li>คุยกะเธอไง</li>
+      <li>หายใจ กะพริบตา</li>
+      <li>ทำงานสิ ถามได้</li>
+    </random>
+  </category>
+
+  <category>
+    <pattern>เหยิง</pattern>
+    <random>
+      <li>ใครคือเหยิง</li>
+      <li>เหยิงคือใคร</li>
+      <li>เรียกใหม่</li>
+    </random>
+  </category>
+
+  <category>
+    <pattern>เมิงไง</pattern>
+    <random>
+      <li>หรอ</li>
+      <li>ไม่ใช่มั้ง</li>
+    </random>
+  </category>
+
+  <category>
+    <pattern>ไปไหน *</pattern>
+    <random>
+      <li>ไปกินไรหร่อย ๆ</li>
+      <li>ไม่รู้สิ</li>
+    </random>
+  </category>
+
+  <category>
+    <pattern>* บ้า *</pattern>
+    <random>
+      <li>เธอสิบ้า 555</li>
+      <li>ไม่รู้สิ</li>
+      <li>555</li>
+    </random>
+  </category>
+  
+  <category>
+    <pattern>ขอ * หน่อย</pattern>
+    <random>
+      <li>ไม่มี <star/></li>
+      <li>ไม่รู้สิ</li>
+      <li>555</li>
+    </random>
+  </category>
+
 </aiml>
