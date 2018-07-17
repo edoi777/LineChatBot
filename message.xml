@@ -23,7 +23,12 @@
   </category>
 
   <category>
-    <pattern>*ใคร*</pattern>
+    <pattern>ดี</pattern>
+    <template>อืม</template>
+  </category>
+
+  <category>
+    <pattern>* ใคร *</pattern>
     <random>
       <li>ความจำสั้นหรอ</li>
       <li>แค่นี้ทำเป็นลืม</li>
@@ -38,7 +43,7 @@
   </category>
 
   <category>
-    <pattern>555*</pattern>
+    <pattern>555 *</pattern>
     <random>
       <li>ขำไรหรอ</li>
       <li>ไม่ตลกนะ</li>
@@ -52,7 +57,7 @@
   </category>
 
   <category>
-    <pattern>เบื่อ*</pattern>
+    <pattern>เบื่อ *</pattern>
     <template>
       <srai>
         เบื่อ<star/>ทำไม
@@ -61,19 +66,19 @@
   </category>
 
   <category>
-    <pattern>*เบื่อ*</pattern>
+    <pattern>* เบื่อ *</pattern>
     <template>
       <srai>เจอกันหน่อยมั้ย</srai>
     </template>
   </category>
 
   <category>
-    <pattern>ง่วง*</pattern>
+    <pattern>ง่วง *</pattern>
     <template>นอนสิ รอไร</template>
   </category>
 
   <category>
-    <pattern>หิว*</pattern>
+    <pattern>หิว *</pattern>
     <random>
       <li>หิวก็กินสิ</li>
       <li>ไปหาไรกินกัน</li>
@@ -82,14 +87,14 @@
   </category>
 
   <category>
-    <pattern>ทำไร*</pattern>
+    <pattern>ทำไร *</pattern>
     <random>
       <li>คุยกะเธอไง</li>
       <li>หายใจ กะพริบตา</li>
       <li>ทำงานสิ ถามได้</li>
     </random>
   </category>
-  
+
   <category>
     <pattern>เหยิง</pattern>
     <random>
@@ -98,12 +103,29 @@
       <li>เรียกใหม่</li>
     </random>
   </category>
-  
+
   <category>
     <pattern>เมิงไง</pattern>
     <random>
       <li>หรอ</li>
       <li>ไม่ใช่มั้ง</li>
+    </random>
+  </category>
+
+  <category>
+    <pattern>ไปไหน *</pattern>
+    <random>
+      <li>ไปกินไรหร่อย ๆ</li>
+      <li>ไม่รู้สิ</li>
+    </random>
+  </category>
+
+  <category>
+    <pattern>* บ้า *</pattern>
+    <random>
+      <li>เธอสิบ้า 555</li>
+      <li>ไม่รู้สิ</li>
+      <li>555</li>
     </random>
   </category>
 
