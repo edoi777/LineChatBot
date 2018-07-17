@@ -61,14 +61,16 @@ function handleEvent(event) {
 
     const callback = function (answer, wildCardArray, input) {
         console.log(answer + ' | ' + wildCardArray + ' | ' + input);
+
+        // create a echoing text message
+        const echo = { type: 'text', text: answer };
+
+        // use reply API
+        return client.replyMessage(event.replyToken, echo);
     };
-    const a = aimlInterpreter.findAnswerInLoadedAIMLFiles(event.message.text, callback);
+    //aimlInterpreter.findAnswerInLoadedAIMLFiles(event.message.text, callback);
 
-    // create a echoing text message
-    const echo = { type: 'text', text: a };
 
-    // use reply API
-    return client.replyMessage(event.replyToken, echo);
 }
 
 // listen on port
