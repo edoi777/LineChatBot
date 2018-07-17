@@ -3,9 +3,9 @@
 const line = require('@line/bot-sdk');
 const express = require('express');
 const bodyParser = require('body-parser')
-const AIMLParser = require('aimlparser')
-//const AIMLInterpreter = require('aimlinterpreter');
-//const aimlInterpreter = new AIMLInterpreter({ name: 'WireInterpreter', age: '42' });
+//const AIMLParser = require('aimlparser')
+const AIMLInterpreter = require('aimlinterpreter');
+const aimlInterpreter = new AIMLInterpreter({ name: 'WireInterpreter', age: '42' });
 
 // create LINE SDK config from env variables
 const config = {
@@ -20,10 +20,10 @@ const client = new line.Client(config);
 // about Express itself: https://expressjs.com/
 const app = express();
 
-const aimlParser = new AIMLParser({ name: 'HelloBot' })
-aimlParser.load(['./message.xml'])
+//const aimlParser = new AIMLParser({ name: 'HelloBot' })
+//aimlParser.load(['./message.xml'])
 
-//aimlInterpreter.loadAIMLFilesIntoArray(['./message.xml']);
+aimlInterpreter.loadAIMLFilesIntoArray(['./message.xml']);
 
 app.use(bodyParser.urlencoded({ extended: false }))
 
@@ -50,25 +50,25 @@ function handleEvent(event) {
         return Promise.resolve(null);
     }
 
-    aimlParser.getResult(event.message.text, (answer, wildCardArray, input) => {
+    //aimlParser.getResult(event.message.text, (answer, wildCardArray, input) => {
 
-        // create a echoing text message
-        const echo = { type: 'text', text: answer };
+    //    // create a echoing text message
+    //    const echo = { type: 'text', text: answer };
 
-        // use reply API
-        return client.replyMessage(event.replyToken, echo);
-    })
+    //    // use reply API
+    //    return client.replyMessage(event.replyToken, echo);
+    //})
 
-    //const callback = function (answer, wildCardArray, input) {
-    //    console.log(answer + ' | ' + wildCardArray + ' | ' + input);
-    //};
-    //const a = aimlInterpreter.findAnswerInLoadedAIMLFiles(event.message.text, callback);
+    const callback = function (answer, wildCardArray, input) {
+        console.log(answer + ' | ' + wildCardArray + ' | ' + input);
+    };
+    const a = aimlInterpreter.findAnswerInLoadedAIMLFiles(event.message.text, callback);
 
-    //// create a echoing text message
-    //const echo = { type: 'text', text: a };
+    // create a echoing text message
+    const echo = { type: 'text', text: a };
 
-    //// use reply API
-    //return client.replyMessage(event.replyToken, echo);
+    // use reply API
+    return client.replyMessage(event.replyToken, echo);
 }
 
 // listen on port
