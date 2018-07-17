@@ -4,8 +4,8 @@ const line = require('@line/bot-sdk');
 const express = require('express');
 const bodyParser = require('body-parser')
 //const AIMLParser = require('aimlparser')
-AIMLInterpreter = require('aimlinterpreter');
-var aimlInterpreter = new AIMLInterpreter({ name: 'WireInterpreter', age: '42' });
+const AIMLInterpreter = require('aimlinterpreter');
+const aimlInterpreter = new AIMLInterpreter({ name: 'WireInterpreter', age: '42' });
 
 // create LINE SDK config from env variables
 const config = {
@@ -59,10 +59,10 @@ function handleEvent(event) {
     //    return client.replyMessage(event.replyToken, echo);
     //})
 
-    var callback = function (answer, wildCardArray, input) {
+    const callback = function (answer, wildCardArray, input) {
         console.log(answer + ' | ' + wildCardArray + ' | ' + input);
     };
-    var a = aimlInterpreter.findAnswerInLoadedAIMLFiles(event.message.text, callback);
+    const a = aimlInterpreter.findAnswerInLoadedAIMLFiles(event.message.text, callback);
 
     // create a echoing text message
     const echo = { type: 'text', text: a };
