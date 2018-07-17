@@ -51,7 +51,7 @@ function handleEvent(event) {
     }
 
     aimlParser.getResult(event.message.text, (answer, wildCardArray, input) => {
-
+        console.log(answer + ' | ' + wildCardArray + ' | ' + input);
         // create a echoing text message
         const echo = { type: 'text', text: answer };
 
@@ -59,9 +59,9 @@ function handleEvent(event) {
         return client.replyMessage(event.replyToken, echo);
     })
 
-    //const callback = function (answer, wildCardArray, input) {
-    //    console.log(answer + ' | ' + wildCardArray + ' | ' + input);
-    //};
+    const callback = function (answer, wildCardArray, input) {
+        console.log(answer + ' | ' + wildCardArray + ' | ' + input);
+    };
     //const a = aimlInterpreter.findAnswerInLoadedAIMLFiles(event.message.text, callback);
 
     //// create a echoing text message
