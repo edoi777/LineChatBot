@@ -63,14 +63,14 @@ function handleEvent(event) {
         console.log(answer + ' | ' + wildCardArray + ' | ' + input);
 
         // create a echoing text message
-        const echo = { type: 'text', text: answer };
+        const echo = { type: 'text', text: a };
 
         // use reply API
         return client.replyMessage(event.replyToken, echo);
     };
-    //aimlInterpreter.findAnswerInLoadedAIMLFiles(event.message.text, callback);
+    aimlInterpreter.findAnswerInLoadedAIMLFiles(event.message.text, callback);
 
-
+    
 }
 
 // listen on port
