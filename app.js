@@ -44,7 +44,7 @@ function handleEvent(event) {
     }
 
     // create a echoing text message
-    const echo = {};
+    const echo = { type: 'text', text: "Hey"};
 
     aimlParser.getResult(event.message.text, (answer, wildCardArray, input) => {
         echo = { type: 'text', text: answer };
