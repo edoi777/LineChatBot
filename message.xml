@@ -19,4 +19,9 @@
         <pattern>I LIKE *</pattern>
         <template>I like <star/> too.</template>
     </category>
+
+    <category>
+        <pattern>*</pattern>
+        <template>คืออะไร ไม่เข้าใจ</template>
+    </category>
 </aiml>
