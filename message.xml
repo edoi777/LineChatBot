@@ -89,5 +89,22 @@
       <li>ทำงานสิ ถามได้</li>
     </random>
   </category>
+  
+  <category>
+    <pattern>เหยิง</pattern>
+    <random>
+      <li>ใครคือเหยิง</li>
+      <li>เหยิงคือใคร</li>
+      <li>เรียกใหม่</li>
+    </random>
+  </category>
+  
+  <category>
+    <pattern>เมิงไง</pattern>
+    <random>
+      <li>หรอ</li>
+      <li>ไม่ใช่มั้ง</li>
+    </random>
+  </category>
 
 </aiml>
