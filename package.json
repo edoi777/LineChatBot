@@ -2,13 +2,15 @@
   "name": "line-chat-bot",
   "version": "0.0.0",
   "description": "LineChatBot",
-  "main": "server.js",
+  "main": "app.js",
   "scripts": {
     "start": "node ."
   },
   "author": "Join",
   "dependencies": {
     "@line/bot-sdk": "^6.1.0",
+    "aimlinterpreter": "^0.1.7",
+    "aimlparser": "^1.0.5",
     "express": "^4.16.3"
   },
   "devDependencies": {},

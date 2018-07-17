@@ -2,6 +2,7 @@
 
 const line = require('@line/bot-sdk');
 const express = require('express');
+const AIMLParser = require('aimlparser')
 
 // create LINE SDK config from env variables
 const config = {
@@ -15,6 +16,9 @@ const client = new line.Client(config);
 // create Express app
 // about Express itself: https://expressjs.com/
 const app = express();
+
+const aimlParser = new AIMLParser({ name: 'HelloBot' })
+aimlParser.load(['./message.xml'])
 
 app.get('/', (req, res) => {
     res.send('Hello World!');
@@ -40,7 +44,11 @@ function handleEvent(event) {
     }
 
     // create a echoing text message
-    const echo = { type: 'text', text: event.message.text };
+    const echo = {};
+
+    aimlParser.getResult(event.message.text, (answer, wildCardArray, input) => {
+        echo = { type: 'text', text: answer };
+    })
 
     // use reply API
     return client.replyMessage(event.replyToken, echo);
