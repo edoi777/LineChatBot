@@ -4,8 +4,12 @@ const line = require('@line/bot-sdk');
 const express = require('express');
 const bodyParser = require('body-parser')
 //const AIMLParser = require('aimlparser')
-const AIMLInterpreter = require('aimlinterpreter');
-const aimlInterpreter = new AIMLInterpreter({ name: 'WireInterpreter', age: '42' });
+//const AIMLInterpreter = require('aimlinterpreter');
+//const aimlInterpreter = new AIMLInterpreter({ name: 'WireInterpreter', age: '42' });
+
+aimlHigh = require('aiml-high');
+var interpreter = new aimlHigh({ name: 'Bot', age: '42' }, 'Goodbye');
+interpreter.loadFiles(['./message.xml']);
 
 // create LINE SDK config from env variables
 const config = {
@@ -23,7 +27,7 @@ const app = express();
 //const aimlParser = new AIMLParser({ name: 'HelloBot' })
 //aimlParser.load(['./message.xml'])
 
-aimlInterpreter.loadAIMLFilesIntoArray(['./message.xml']);
+//aimlInterpreter.loadAIMLFilesIntoArray(['./message.xml']);
 
 app.use(bodyParser.urlencoded({ extended: false }))
 
@@ -59,6 +63,17 @@ function handleEvent(event) {
     //    return client.replyMessage(event.replyToken, echo);
     //})
 
+    //const callback = function (answer, wildCardArray, input) {
+    //    console.log(answer + ' | ' + wildCardArray + ' | ' + input);
+
+    //    // create a echoing text message
+    //    const echo = { type: 'text', text: answer };
+
+    //    // use reply API
+    //    return client.replyMessage(event.replyToken, echo);
+    //};
+    //aimlInterpreter.findAnswerInLoadedAIMLFiles(event.message.text, callback);
+
     const callback = function (answer, wildCardArray, input) {
         console.log(answer + ' | ' + wildCardArray + ' | ' + input);
 
@@ -68,9 +83,8 @@ function handleEvent(event) {
         // use reply API
         return client.replyMessage(event.replyToken, echo);
     };
-    aimlInterpreter.findAnswerInLoadedAIMLFiles(event.message.text, callback);
 
-    
+    interpreter.findAnswer(event.message.text, callback);
 }
 
 // listen on port
