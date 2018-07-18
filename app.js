@@ -7,8 +7,8 @@ const bodyParser = require('body-parser')
 //const AIMLInterpreter = require('aimlinterpreter');
 //const aimlInterpreter = new AIMLInterpreter({ name: 'WireInterpreter', age: '42' });
 
-aimlHigh = require('aiml-high');
-var interpreter = new aimlHigh({ name: 'Bot', age: '42' }, 'Goodbye');
+const aimlHigh = require('aiml-high');
+const interpreter = new aimlHigh({ name: 'Bot', age: '42' }, 'Goodbye');
 interpreter.loadFiles(['./message.xml']);
 
 // create LINE SDK config from env variables
