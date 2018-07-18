@@ -1,5 +1,51 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<aiml version="2.0">
-	<category><pattern>ดีจ้า*</pattern><template>ดีจ้า<star/></template></category>
-<category><pattern>hello*</pattern><template>hi<star/></template></category>
+<aiml version="2.0" encoding="utf-8">
+
+  <category>
+    <pattern>พ่อ</pattern>
+    <template>เล่าเรื่องเกี่ยวกับครอบครัวคุณให้เราฟังหน่อยสิ</template>
+  </category>
+
+  <category>
+    <pattern>_พ่อ</pattern>
+    <template>
+      <srai>พ่อ</srai>
+    </template>
+  </category>
+  <category>
+    <pattern>พ่อ_</pattern>
+    <template>
+      <srai>พ่อ</srai>
+    </template>
+  </category>
+
+  <category>
+    <pattern>_พ่อ *</pattern>
+    <template>
+      <srai>พ่อ</srai>
+    </template>
+  </category>
+
+  <category>
+    <pattern>ดีจ้า_</pattern>
+    <template>
+      <random>
+        <li>สวัสดี</li>
+        <li>ดีจ้า</li>
+        <li>หวัดดี</li>
+        <li>ว่าไงจ๊ะ</li>
+      </random>
+    </template>
+  </category>
+  <category>
+    <pattern>* ถาม *</pattern>
+    <template>
+      <random>
+        <li>มีอะไรหรอ</li>
+        <li>ว่ามาสิ</li>
+        <li>ไม่ให้ถาม</li>
+        <li>ถามมา</li>
+      </random>
+    </template>
+  </category>
 </aiml>
