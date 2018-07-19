@@ -69,6 +69,53 @@ function handleEvent(event) {
         return client.replyMessage(event.replyToken, echo);
     }
 
+    let answer = ['นอนสิ รอไร', 'นอนได้ไง งานยังไม่เสร็จ', 'นอนเถอะ', 'ห้ามนอน'];
+    if (msg.includes('ง่วง')) {
+
+        let selectAnswer = Math.floor(Math.random() * answer.length);
+        let replyAnswer = answer[selectAnswer];
+        // create a echoing text message
+        let echo = { type: 'text', text: replyAnswer };
+
+        // use reply API
+        return client.replyMessage(event.replyToken, echo);
+    }
+
+    let answer = ['ไปหาไรกินกัน', 'กินไรดี', 'กินให้มันน้อย ๆ หน่อย', 'อ้วนแล้วนะ จะกินไรเยอะแยะ', 'ก็กินสิ'];
+    if (msg.includes('หิว')) {
+
+        let selectAnswer = Math.floor(Math.random() * answer.length);
+        let replyAnswer = answer[selectAnswer];
+        // create a echoing text message
+        let echo = { type: 'text', text: replyAnswer };
+
+        // use reply API
+        return client.replyMessage(event.replyToken, echo);
+    }
+
+    let answer = ['ว่ามาสิ', 'จะถามไรนักหนา', 'ตอบได้ก็จะตอบ', 'ไม่ให้ถาม', 'ไม่ให้ถาม'];
+    if (msg.includes('ถาม')) {
+
+        let selectAnswer = Math.floor(Math.random() * answer.length);
+        let replyAnswer = answer[selectAnswer];
+        // create a echoing text message
+        let echo = { type: 'text', text: replyAnswer };
+
+        // use reply API
+        return client.replyMessage(event.replyToken, echo);
+    }
+
+    let answer = ['เหยิงพ่องเมิงสิ', 'เหยิงแม่เมิงสิ', 'ห่าน', 'เหยิงไรสวยขนาดนี้'];
+    if (msg.includes('เหยิง')) {
+
+        let selectAnswer = Math.floor(Math.random() * answer.length);
+        let replyAnswer = answer[selectAnswer];
+        // create a echoing text message
+        let echo = { type: 'text', text: replyAnswer };
+
+        // use reply API
+        return client.replyMessage(event.replyToken, echo);
+    }
     //aimlParser.getResult(event.message.text, (answer, wildCardArray, input) => {
 
     //    console.log(answer + ' | ' + wildCardArray + ' | ' + input);
