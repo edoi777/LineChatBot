@@ -55,7 +55,7 @@ function handleEvent(event) {
         return Promise.resolve(null);
     }
     const msg = event.message.text;
-    const match = msg.indexOf('ดีจ้า');
+    const match = msg.includes('ดีจ้า');
     console.log('msg--' + msg + match);
 
     if (match) {
