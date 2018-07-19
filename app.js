@@ -32,12 +32,12 @@ const app = express();
 
 //aimlInterpreter.loadAIMLFilesIntoArray(['./message.xml']);
 
+let jsonData = [];
 fs.readFile(file, 'utf8', function (err, data) {
     if (err) {
         return console.log(err);
     }
-    data = JSON.parse(data);
-    console.log(data)
+    jsonData = JSON.parse(data);
 });
 
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -65,12 +65,14 @@ function handleEvent(event) {
         return Promise.resolve(null);
     }
 
-
+    for (var item of jsonData) {
+        console.log('item: ', item.keyword);
+    }
 
 
 
     let msg = event.message.text;
-    console.log('msg--' + msg );
+    console.log('msg--' + msg);
 
     let answer1 = ['สวัสดี', 'หวัดดี', 'ว่าไงจ๊ะ', 'ดีจ้า'];
     if (msg.includes('ดีจ้า') || msg.includes('หวัดดี')) {
