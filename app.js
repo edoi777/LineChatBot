@@ -2,7 +2,6 @@
 
 const line = require('@line/bot-sdk')
 const express = require('express')
-//const bodyParser = require('body-parser')
 const fs = require('fs')
 const file = './message.json'
 
@@ -27,8 +26,6 @@ fs.readFile(file, 'utf8', function (err, data) {
     jsonData = JSON.parse(data)
 })
 
-//app.use(bodyParser.urlencoded({ extended: true }))
-
 app.get('/', (req, res) => {
     res.send('Hello World!')
 })
@@ -51,13 +48,14 @@ function handleEvent(event) {
         // ignore non-text-message event
         return Promise.resolve(null)
     }
+
     let msg = event.message.text
     for (let item of jsonData) {
         if (msg.includes(item.keyword)) {
             let selectAnswer = Math.floor(Math.random() * item.answer.length)
             let replyAnswer = item.answer[selectAnswer]
-
-            console.log('humen-- ' + msg + ' | ' + 'bot-- ' + replyAnswer)
+                
+            console.log(`humen-- ${msg} | bot-- ${replyAnswer}`)
 
             // create a echoing text message
             let echo = { type: 'text', text: replyAnswer }
