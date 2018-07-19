@@ -2,7 +2,7 @@
 
 const line = require('@line/bot-sdk')
 const express = require('express')
-const bodyParser = require('body-parser')
+//const bodyParser = require('body-parser')
 const fs = require('fs')
 const file = './message.json'
 
@@ -27,7 +27,7 @@ fs.readFile(file, 'utf8', function (err, data) {
     jsonData = JSON.parse(data)
 })
 
-app.use(bodyParser.urlencoded({ extended: true }))
+//app.use(bodyParser.urlencoded({ extended: true }))
 
 app.get('/', (req, res) => {
     res.send('Hello World!')
