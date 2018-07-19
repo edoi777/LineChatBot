@@ -55,7 +55,7 @@ function handleEvent(event) {
         return Promise.resolve(null);
     }
     const msg = event.message.text;
-    const match = msg.indexOf('?????');
+    const match = msg.indexOf('ดีจ้า');
     console.log('msg--' + msg + match);
 
     if (match) {
@@ -63,7 +63,7 @@ function handleEvent(event) {
         console.log('status--match')
 
         // create a echoing text message
-        const echo = { type: 'text', text: '????' };
+        const echo = { type: 'text', text: 'ว่าไงคะ' };
 
         // use reply API
         return client.replyMessage(event.replyToken, echo);
