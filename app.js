@@ -54,8 +54,11 @@ function handleEvent(event) {
         return Promise.resolve(null);
     }
     const msg = event.message.text;
-
+    console.log('msg--' + msg)
     if (msg.includes('?????')) {
+
+        console.log('status--match')
+
         // create a echoing text message
         const echo = { type: 'text', text: '????' };
 
