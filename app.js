@@ -3,7 +3,9 @@
 const line = require('@line/bot-sdk');
 const express = require('express');
 const bodyParser = require('body-parser')
-const utf8 = require('utf8');
+const fs = require('fs');
+const file = './message.json';
+//const utf8 = require('utf8');
 //const AIMLParser = require('aimlparser')
 //const AIMLInterpreter = require('aimlinterpreter');
 //const aimlInterpreter = new AIMLInterpreter({ name: 'WireInterpreter', age: '42' });
@@ -54,6 +56,20 @@ function handleEvent(event) {
         // ignore non-text-message event
         return Promise.resolve(null);
     }
+
+
+    fs.readFile(file, 'utf8', function (err, data) {
+        if (err) {
+            return console.log(err);
+        }
+
+        fileIndex++;
+
+        data = JSON.parse(data);
+        console.log(data)
+    });
+
+
     let msg = event.message.text;
     console.log('msg--' + msg );
 
@@ -87,7 +103,7 @@ function handleEvent(event) {
         let selectAnswer3 = Math.floor(Math.random() * answer3.length);
         let replyAnswer3 = answer3[selectAnswer3];
         // create a echoing text message
-        let echo = { type: 'text', text: replyAnswer3 };
+        let echo3 = { type: 'text', text: replyAnswer3 };
 
         // use reply API
         return client.replyMessage(event.replyToken, echo3);
