@@ -12,7 +12,8 @@
     "aiml-high": "0.0.8",
     "aimlinterpreter": "^0.1.7",
     "aimlparser": "^1.0.5",
-    "express": "^4.16.3"
+    "express": "^4.16.3",
+    "utf8": "^3.0.0"
   },
   "devDependencies": {},
   "repository": {

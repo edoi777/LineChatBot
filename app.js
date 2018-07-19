@@ -3,6 +3,7 @@
 const line = require('@line/bot-sdk');
 const express = require('express');
 const bodyParser = require('body-parser')
+const utf8 = require('utf8');
 //const AIMLParser = require('aimlparser')
 //const AIMLInterpreter = require('aimlinterpreter');
 //const aimlInterpreter = new AIMLInterpreter({ name: 'WireInterpreter', age: '42' });
@@ -53,8 +54,8 @@ function handleEvent(event) {
         // ignore non-text-message event
         return Promise.resolve(null);
     }
-    const msg = event.message.text;
-    const match = msg.indexOf('?????')
+    const msg = utf8.encode(event.message.text);
+    const match = msg.indexOf(utf8.encode('?????'));
     console.log('msg--' + msg + match);
 
     if (match) {
@@ -62,7 +63,7 @@ function handleEvent(event) {
         console.log('status--match')
 
         // create a echoing text message
-        const echo = { type: 'text', text: '????' };
+        const echo = { type: 'text', text: utf8.encode('????') };
 
         // use reply API
         return client.replyMessage(event.replyToken, echo);
