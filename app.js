@@ -58,6 +58,9 @@ function handleEvent(event) {
             if (!item.hasOwnProperty('refer')) {
                 selectAnswer = Math.floor(Math.random() * item.answer.length)
                 replyAnswer = item.answer[selectAnswer]
+
+                console.log(`humen-- ${msg} | bot-- ${replyAnswer}`)
+
                 // create a echoing text message
                 echo = { type: 'text', text: replyAnswer }
 
@@ -69,6 +72,9 @@ function handleEvent(event) {
                     if (item.refer === subitem.keyword) {
                         selectAnswer = Math.floor(Math.random() * subitem.answer.length)
                         replyAnswer = subitem.answer[selectAnswer]
+
+                        console.log(`humen-- ${msg} | bot-- ${replyAnswer}`)
+
                         // create a echoing text message
                         echo = { type: 'text', text: replyAnswer }
 
@@ -81,6 +87,12 @@ function handleEvent(event) {
     }
 
     console.log(`humen-- ${msg} | bot-- ${replyAnswer}`)
+
+    // create a echoing text message
+    echo = { type: 'text', text: replyAnswer }
+
+    // use reply API
+    return client.replyMessage(event.replyToken, echo)
 }
 
 // listen on port
