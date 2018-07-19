@@ -52,16 +52,41 @@ function handleEvent(event) {
     let msg = event.message.text
     for (let item of jsonData) {
         if (msg.includes(item.keyword)) {
-            let selectAnswer = Math.floor(Math.random() * item.answer.length)
-            let replyAnswer = item.answer[selectAnswer]
-                
-            console.log(`humen-- ${msg} | bot-- ${replyAnswer}`)
+            let selectAnswer = 0
+            let replyAnswer = ''
+            let echo = {}
+            if (!item.hasOwnProperty('refer')) {
 
-            // create a echoing text message
-            let echo = { type: 'text', text: replyAnswer }
+                selectAnswer = Math.floor(Math.random() * item.answer.length)
+                replyAnswer = item.answer[selectAnswer]
 
-            // use reply API
-            return client.replyMessage(event.replyToken, echo)
+                console.log(`humen-- ${msg} | bot-- ${replyAnswer}`)
+
+                // create a echoing text message
+                echo = { type: 'text', text: replyAnswer }
+
+                // use reply API
+                return client.replyMessage(event.replyToken, echo)
+            }
+            else {
+                for (let subitem of jsonData) {
+                    if (item.refer === subitem.keyword) {
+
+                        selectAnswer = Math.floor(Math.random() * subitem.answer.length)
+                        replyAnswer = subitem.answer[selectAnswer]
+                        
+                        console.log(`humen-- ${msg} | bot-- ${replyAnswer}`)
+
+                        // create a echoing text message
+                        echo = { type: 'text', text: replyAnswer }
+
+                        // use reply API
+                        return client.replyMessage(event.replyToken, echo)
+                    }
+                }
+            }
+
+
         }
     }
 }
