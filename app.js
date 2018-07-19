@@ -32,6 +32,14 @@ const app = express();
 
 //aimlInterpreter.loadAIMLFilesIntoArray(['./message.xml']);
 
+fs.readFile(file, 'utf8', function (err, data) {
+    if (err) {
+        return console.log(err);
+    }
+    data = JSON.parse(data);
+    console.log(data)
+});
+
 app.use(bodyParser.urlencoded({ extended: true }))
 
 app.get('/', (req, res) => {
@@ -58,16 +66,7 @@ function handleEvent(event) {
     }
 
 
-    fs.readFile(file, 'utf8', function (err, data) {
-        if (err) {
-            return console.log(err);
-        }
 
-        fileIndex++;
-
-        data = JSON.parse(data);
-        console.log(data)
-    });
 
 
     let msg = event.message.text;
