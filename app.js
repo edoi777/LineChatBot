@@ -54,16 +54,16 @@ function handleEvent(event) {
         // ignore non-text-message event
         return Promise.resolve(null);
     }
-    const msg = event.message.text;
-    const match = msg.includes('ดีจ้า');
-    console.log('msg--' + msg + match);
+    let msg = event.message.text;
+    console.log('msg--' + msg );
 
-    if (match) {
+    let answer = ['สวัสดี', 'หวัดดี', 'ว่าไงจ๊ะ', 'ดีจ้า'];
+    if (msg.includes('ดีจ้า') || msg.includes('หวัดดี')) {
 
-        console.log('status--match')
-
+        let selectAnswer = Math.floor(Math.random() * answer.length);
+        let replyAnswer = answer[selectAnswer];
         // create a echoing text message
-        const echo = { type: 'text', text: 'ว่าไงคะ' };
+        let echo = { type: 'text', text: replyAnswer };
 
         // use reply API
         return client.replyMessage(event.replyToken, echo);
