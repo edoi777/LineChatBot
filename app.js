@@ -50,45 +50,35 @@ function handleEvent(event) {
     }
 
     let msg = event.message.text
+    let selectAnswer = 0
+    let replyAnswer = 'อย่าโกรธเราเลยนะ เรากำลังเรียนรู้ ^^'
+    let echo = {}
     for (let item of jsonData) {
         if (msg.includes(item.keyword)) {
-            let selectAnswer = 0
-            let replyAnswer = ''
-            let echo = {}
             if (!item.hasOwnProperty('refer')) {
-
                 selectAnswer = Math.floor(Math.random() * item.answer.length)
                 replyAnswer = item.answer[selectAnswer]
-
-                console.log(`humen-- ${msg} | bot-- ${replyAnswer}`)
-
-                // create a echoing text message
-                echo = { type: 'text', text: replyAnswer }
-
-                // use reply API
-                return client.replyMessage(event.replyToken, echo)
+                return
             }
             else {
                 for (let subitem of jsonData) {
                     if (item.refer === subitem.keyword) {
-
                         selectAnswer = Math.floor(Math.random() * subitem.answer.length)
                         replyAnswer = subitem.answer[selectAnswer]
-                        
-                        console.log(`humen-- ${msg} | bot-- ${replyAnswer}`)
-
-                        // create a echoing text message
-                        echo = { type: 'text', text: replyAnswer }
-
-                        // use reply API
-                        return client.replyMessage(event.replyToken, echo)
+                        return
                     }
                 }
             }
-
-
         }
     }
+
+    console.log(`humen-- ${msg} | bot-- ${replyAnswer}`)
+
+    // create a echoing text message
+    echo = { type: 'text', text: replyAnswer }
+
+    // use reply API
+    return client.replyMessage(event.replyToken, echo)
 }
 
 // listen on port
