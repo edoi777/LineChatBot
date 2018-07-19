@@ -3,7 +3,7 @@
 const line = require('@line/bot-sdk');
 const express = require('express');
 const bodyParser = require('body-parser')
-const AIMLParser = require('aimlparser')
+//const AIMLParser = require('aimlparser')
 //const AIMLInterpreter = require('aimlinterpreter');
 //const aimlInterpreter = new AIMLInterpreter({ name: 'WireInterpreter', age: '42' });
 
@@ -24,8 +24,8 @@ const client = new line.Client(config);
 // about Express itself: https://expressjs.com/
 const app = express();
 
-const aimlParser = new AIMLParser({ name: 'HelloBot' })
-aimlParser.load(['./message.xml'])
+//const aimlParser = new AIMLParser({ name: 'HelloBot' })
+//aimlParser.load(['./message.xml'])
 
 //aimlInterpreter.loadAIMLFilesIntoArray(['./message.xml']);
 
@@ -53,17 +53,26 @@ function handleEvent(event) {
         // ignore non-text-message event
         return Promise.resolve(null);
     }
+    const msg = event.message.text;
 
-    aimlParser.getResult(event.message.text, (answer, wildCardArray, input) => {
-
-        console.log(answer + ' | ' + wildCardArray + ' | ' + input);
-
+    if (msg.includes('?????')) {
         // create a echoing text message
-        const echo = { type: 'text', text: answer };
+        const echo = { type: 'text', text: '????' };
 
         // use reply API
         return client.replyMessage(event.replyToken, echo);
-    })
+    }
+
+    //aimlParser.getResult(event.message.text, (answer, wildCardArray, input) => {
+
+    //    console.log(answer + ' | ' + wildCardArray + ' | ' + input);
+
+    //    // create a echoing text message
+    //    const echo = { type: 'text', text: answer };
+
+    //    // use reply API
+    //    return client.replyMessage(event.replyToken, echo);
+    //})
 
     //const callback = function (answer, wildCardArray, input) {
     //    console.log(answer + ' | ' + wildCardArray + ' | ' + input);
