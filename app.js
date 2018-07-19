@@ -54,8 +54,9 @@ function handleEvent(event) {
         return Promise.resolve(null);
     }
     const msg = event.message.text;
-    console.log('msg--' + msg)
-    if (msg.includes('?????')) {
+    console.log('msg--' + msg + msg.includes('?????'));
+    const match = msg.includes('?????')
+    if (match) {
 
         console.log('status--match')
 
