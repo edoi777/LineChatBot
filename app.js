@@ -30,7 +30,7 @@ const app = express();
 
 //aimlInterpreter.loadAIMLFilesIntoArray(['./message.xml']);
 
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({ extended: true }))
 
 app.get('/', (req, res) => {
     res.send('Hello World!');
@@ -54,8 +54,8 @@ function handleEvent(event) {
         // ignore non-text-message event
         return Promise.resolve(null);
     }
-    const msg = utf8.encode(event.message.text);
-    const match = msg.indexOf(utf8.encode('?????'));
+    const msg = event.message.text;
+    const match = msg.indexOf('?????');
     console.log('msg--' + msg + match);
 
     if (match) {
@@ -63,7 +63,7 @@ function handleEvent(event) {
         console.log('status--match')
 
         // create a echoing text message
-        const echo = { type: 'text', text: utf8.encode('????') };
+        const echo = { type: 'text', text: '????' };
 
         // use reply API
         return client.replyMessage(event.replyToken, echo);
