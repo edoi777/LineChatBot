@@ -54,8 +54,13 @@ function handleEvent(event) {
     let replyAnswer = 'อย่าโกรธเราเลยนะ เรากำลังเรียนรู้ ^^'
     let echo = {}
     for (let item of jsonData) {
-        if (msg.includes(item.keyword)) {
-            if (!item.hasOwnProperty('refer')) {
+        let word = item.keyword.split("_");
+
+        if (word.length > 1) {
+            let w1 = new RegExp('^' + word[0]); //start word
+            let w2 = new RegExp(word[1]);//contain word
+
+            if (msg.match(w1) && msg.match(w2)) {
                 selectAnswer = Math.floor(Math.random() * item.answer.length)
                 replyAnswer = item.answer[selectAnswer]
 
@@ -67,19 +72,34 @@ function handleEvent(event) {
                 // use reply API
                 return client.replyMessage(event.replyToken, echo)
             }
-            else {
-                for (let subitem of jsonData) {
-                    if (item.refer === subitem.keyword) {
-                        selectAnswer = Math.floor(Math.random() * subitem.answer.length)
-                        replyAnswer = subitem.answer[selectAnswer]
+        } else {
+            if (msg.includes(item.keyword)) {
+                if (!item.hasOwnProperty('refer')) {
+                    selectAnswer = Math.floor(Math.random() * item.answer.length)
+                    replyAnswer = item.answer[selectAnswer]
 
-                        console.log(`humen-- ${msg} | bot-- ${replyAnswer}`)
+                    console.log(`humen-- ${msg} | bot-- ${replyAnswer}`)
 
-                        // create a echoing text message
-                        echo = { type: 'text', text: replyAnswer }
+                    // create a echoing text message
+                    echo = { type: 'text', text: replyAnswer }
 
-                        // use reply API
-                        return client.replyMessage(event.replyToken, echo)
+                    // use reply API
+                    return client.replyMessage(event.replyToken, echo)
+                }
+                else {
+                    for (let subitem of jsonData) {
+                        if (item.refer === subitem.keyword) {
+                            selectAnswer = Math.floor(Math.random() * subitem.answer.length)
+                            replyAnswer = subitem.answer[selectAnswer]
+
+                            console.log(`humen-- ${msg} | bot-- ${replyAnswer}`)
+
+                            // create a echoing text message
+                            echo = { type: 'text', text: replyAnswer }
+
+                            // use reply API
+                            return client.replyMessage(event.replyToken, echo)
+                        }
                     }
                 }
             }
@@ -93,6 +113,17 @@ function handleEvent(event) {
 
     // use reply API
     return client.replyMessage(event.replyToken, echo)
+
+    //var str = "กินอะไรยัง";
+    //var key = 'กิน_ยัง';
+    //var word = key.split("_");
+    //var v = new RegExp('^' + word[0]);
+    //var v2 = new RegExp(word[1]);
+
+    //if (str.match(v) && str.match(v2)) {
+    //    var res = '555'
+    //    document.getElementById("demo").innerHTML = res;
+    //}
 }
 
 // listen on port
