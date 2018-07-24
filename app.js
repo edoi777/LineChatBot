@@ -57,7 +57,7 @@ function handleEvent(event) {
         let word = item.keyword.split("_");
 
         if (word.length > 1) {
-            let w1 = new RegExp('^' + word[0]); //start word
+            let w1 = new RegExp(word[0]);//contain word
             let w2 = new RegExp(word[1]);//contain word
 
             if (msg.match(w1) && msg.match(w2)) {
