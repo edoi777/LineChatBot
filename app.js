@@ -53,14 +53,22 @@ function handleEvent(event) {
     let selectAnswer = 0
     let replyAnswer = 'อย่าโกรธเราเลยนะ เรากำลังเรียนรู้ ^^'
     let echo = {}
-    for (let item of jsonData) {
+
+
+    jsonData.forEach(function (item, index) {
+
         let word = item.keyword.split("_");
 
+        let isMatch = true;
         if (word.length > 1) {
-            let w1 = new RegExp(word[0]);//contain word
-            let w2 = new RegExp(word[1]);//contain word
+            isMatch = word.forEach(function (value, index) {
+                let w = new RegExp(word[index]);//contain word
+                if (!msg.match(w)) {
+                    return false
+                }
+            })
 
-            if (msg.match(w1) && msg.match(w2)) {
+            if (isMatch) {
                 selectAnswer = Math.floor(Math.random() * item.answer.length)
                 replyAnswer = item.answer[selectAnswer]
 
@@ -72,6 +80,7 @@ function handleEvent(event) {
                 // use reply API
                 return client.replyMessage(event.replyToken, echo)
             }
+
         } else {
             if (msg.includes(item.keyword)) {
                 if (!item.hasOwnProperty('refer')) {
@@ -104,7 +113,8 @@ function handleEvent(event) {
                 }
             }
         }
-    }
+
+    })
 
     console.log(`humen-- ${msg} | bot-- ${replyAnswer}`)
 
@@ -113,17 +123,6 @@ function handleEvent(event) {
 
     // use reply API
     return client.replyMessage(event.replyToken, echo)
-
-    //var str = "กินอะไรยัง";
-    //var key = 'กิน_ยัง';
-    //var word = key.split("_");
-    //var v = new RegExp('^' + word[0]);
-    //var v2 = new RegExp(word[1]);
-
-    //if (str.match(v) && str.match(v2)) {
-    //    var res = '555'
-    //    document.getElementById("demo").innerHTML = res;
-    //}
 }
 
 // listen on port
