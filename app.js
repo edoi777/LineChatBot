@@ -78,10 +78,10 @@ function handleEvent(event) {
                 selectAnswer = Math.floor(Math.random() * item.answer.length)
                 replyAnswer = item.answer[selectAnswer]
 
-                console.log(`1humen-- ${msg} | bot-- ${replyAnswer}`)
+                //console.log(`humen-- ${msg} | bot-- ${replyAnswer}`)
 
                 // create a echoing text message
-                echo = { type: 'text', text: replyAnswer }
+                //echo = { type: 'text', text: replyAnswer }
 
                 // use reply API
                 //return client.replyMessage(event.replyToken, echo)
@@ -93,10 +93,10 @@ function handleEvent(event) {
                     selectAnswer = Math.floor(Math.random() * item.answer.length)
                     replyAnswer = item.answer[selectAnswer]
 
-                    console.log(`humen-- ${msg} | bot-- ${replyAnswer}`)
+                    //console.log(`humen-- ${msg} | bot-- ${replyAnswer}`)
 
                     // create a echoing text message
-                    echo = { type: 'text', text: replyAnswer }
+                    //echo = { type: 'text', text: replyAnswer }
 
                     // use reply API
                     //return client.replyMessage(event.replyToken, echo)
@@ -107,10 +107,10 @@ function handleEvent(event) {
                             selectAnswer = Math.floor(Math.random() * subitem.answer.length)
                             replyAnswer = subitem.answer[selectAnswer]
 
-                            console.log(`humen-- ${msg} | bot-- ${replyAnswer}`)
+                            //console.log(`humen-- ${msg} | bot-- ${replyAnswer}`)
 
                             // create a echoing text message
-                            echo = { type: 'text', text: replyAnswer }
+                            //echo = { type: 'text', text: replyAnswer }
 
                             // use reply API
                             //return client.replyMessage(event.replyToken, echo)
@@ -122,7 +122,7 @@ function handleEvent(event) {
 
     })
 
-    console.log(`2humen-- ${msg} | bot-- ${replyAnswer}`)
+    console.log(`humen-- ${msg} | bot-- ${replyAnswer}`)
 
     // create a echoing text message
     echo = { type: 'text', text: replyAnswer }
