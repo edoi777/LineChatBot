@@ -64,10 +64,11 @@ function handleEvent(event) {
             isMatch = word.forEach(function (value, index) {
                 let w = new RegExp(word[index]);//contain word
                 if (!msg.match(w)) {
+                    console.log('false')
                     return false
                 }
             })
-
+            console.log(isMatch)
             if (isMatch) {
                 selectAnswer = Math.floor(Math.random() * item.answer.length)
                 replyAnswer = item.answer[selectAnswer]
