@@ -78,7 +78,7 @@ function handleEvent(event) {
                 selectAnswer = Math.floor(Math.random() * item.answer.length)
                 replyAnswer = item.answer[selectAnswer]
 
-                console.log(`humen-- ${msg} | bot-- ${replyAnswer}`)
+                console.log(`1humen-- ${msg} | bot-- ${replyAnswer}`)
 
                 // create a echoing text message
                 echo = { type: 'text', text: replyAnswer }
@@ -122,7 +122,7 @@ function handleEvent(event) {
 
     })
 
-    console.log(`humen-- ${msg} | bot-- ${replyAnswer}`)
+    console.log(`2humen-- ${msg} | bot-- ${replyAnswer}`)
 
     // create a echoing text message
     echo = { type: 'text', text: replyAnswer }
