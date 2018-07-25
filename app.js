@@ -59,12 +59,15 @@ function handleEvent(event) {
 
         let word = item.keyword.split("_");
 
-        let isMatch = true;
+        
         if (word.length > 1) {
+            let isMatch = true;
             isMatch = word.forEach(function (value, index) {
                 let w = new RegExp(value);//contain word
+                console.log(w)
+                console.log(!msg.match(w))
                 if (!msg.match(w)) {
-                    console.log('false')
+                    
                     return false
                 }
             })
