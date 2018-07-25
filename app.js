@@ -84,7 +84,7 @@ function handleEvent(event) {
                 echo = { type: 'text', text: replyAnswer }
 
                 // use reply API
-                return client.replyMessage(event.replyToken, echo)
+                //return client.replyMessage(event.replyToken, echo)
             }
 
         } else {
@@ -99,7 +99,7 @@ function handleEvent(event) {
                     echo = { type: 'text', text: replyAnswer }
 
                     // use reply API
-                    return client.replyMessage(event.replyToken, echo)
+                    //return client.replyMessage(event.replyToken, echo)
                 }
                 else {
                     for (let subitem of jsonData) {
@@ -113,7 +113,7 @@ function handleEvent(event) {
                             echo = { type: 'text', text: replyAnswer }
 
                             // use reply API
-                            return client.replyMessage(event.replyToken, echo)
+                            //return client.replyMessage(event.replyToken, echo)
                         }
                     }
                 }
