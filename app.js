@@ -60,7 +60,7 @@ function handleEvent(event) {
         let word = item.keyword.split("_");
        
         if (word.length > 1) {
-            let isMatch = new Array[word.length];
+            let isMatch = new Array();
             
             word.forEach(function (value, index) {
                 let w = new RegExp(value);//contain word
