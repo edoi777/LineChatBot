@@ -62,7 +62,7 @@ function handleEvent(event) {
         let isMatch = true;
         if (word.length > 1) {
             isMatch = word.forEach(function (value, index) {
-                let w = new RegExp(word[index]);//contain word
+                let w = new RegExp(value);//contain word
                 if (!msg.match(w)) {
                     console.log('false')
                     return false
