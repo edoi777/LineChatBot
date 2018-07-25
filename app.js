@@ -58,21 +58,21 @@ function handleEvent(event) {
     jsonData.forEach(function (item, index) {
 
         let word = item.keyword.split("_");
-
-        
+       
         if (word.length > 1) {
-            let isMatch = true;
-            isMatch = word.forEach(function (value, index) {
+            let isMatch = new Array[word.length];
+            
+            word.forEach(function (value, index) {
                 let w = new RegExp(value);//contain word
-                console.log(w)
-                console.log(!msg.match(w))
-                if (!msg.match(w)) {
-                    
-                    return false
+
+                if (msg.match(w)) {
+                    isMatch.push(true);
+                } else {
+                    isMatch.push(false);
                 }
             })
-            console.log(isMatch)
-            if (isMatch) {
+
+            if (isMatch.includes(true, true)) {
                 selectAnswer = Math.floor(Math.random() * item.answer.length)
                 replyAnswer = item.answer[selectAnswer]
 
