@@ -51,17 +51,15 @@ function handleEvent(event) {
 
     let msg = event.message.text
     let selectAnswer = 0
-    let replyAnswer = 'อย่าโกรธเราเลยนะ เรากำลังเรียนรู้ ^^'
+    let replyAnswer = '555555'
     let echo = {}
-
 
     jsonData.forEach(function (item, index) {
 
         let word = item.keyword.split("_");
-       
+
         if (word.length > 1) {
             let isMatch = new Array();
-            
             word.forEach(function (value, index) {
                 let w = new RegExp(value);//contain word
 
@@ -71,49 +69,21 @@ function handleEvent(event) {
                     isMatch.push(false);
                 }
             })
-
-            console.log(isMatch)
-
             if (isMatch.includes(true, true)) {
                 selectAnswer = Math.floor(Math.random() * item.answer.length)
                 replyAnswer = item.answer[selectAnswer]
-
-                //console.log(`humen-- ${msg} | bot-- ${replyAnswer}`)
-
-                // create a echoing text message
-                //echo = { type: 'text', text: replyAnswer }
-
-                // use reply API
-                //return client.replyMessage(event.replyToken, echo)
             }
-
         } else {
             if (msg.includes(item.keyword)) {
                 if (!item.hasOwnProperty('refer')) {
                     selectAnswer = Math.floor(Math.random() * item.answer.length)
                     replyAnswer = item.answer[selectAnswer]
-
-                    //console.log(`humen-- ${msg} | bot-- ${replyAnswer}`)
-
-                    // create a echoing text message
-                    //echo = { type: 'text', text: replyAnswer }
-
-                    // use reply API
-                    //return client.replyMessage(event.replyToken, echo)
                 }
                 else {
                     for (let subitem of jsonData) {
                         if (item.refer === subitem.keyword) {
                             selectAnswer = Math.floor(Math.random() * subitem.answer.length)
                             replyAnswer = subitem.answer[selectAnswer]
-
-                            //console.log(`humen-- ${msg} | bot-- ${replyAnswer}`)
-
-                            // create a echoing text message
-                            //echo = { type: 'text', text: replyAnswer }
-
-                            // use reply API
-                            //return client.replyMessage(event.replyToken, echo)
                         }
                     }
                 }
