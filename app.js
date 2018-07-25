@@ -72,6 +72,8 @@ function handleEvent(event) {
                 }
             })
 
+            console.log(isMatch)
+
             if (isMatch.includes(true, true)) {
                 selectAnswer = Math.floor(Math.random() * item.answer.length)
                 replyAnswer = item.answer[selectAnswer]
