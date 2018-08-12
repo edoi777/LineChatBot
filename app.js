@@ -60,18 +60,20 @@ function handleEvent(event) {
 
         if (word.length > 1) {
             let isMatch = new Array();
+            let w = ''
             word.forEach(function (value, index) {
-                let w = new RegExp(value);//contain word
+                let reg = new RegExp(value)//contain word
+                w = reg[0] + reg[1]//contain word
                 
-                if (msg.match(w)) {
-                    
-                    isMatch.push(true);
-                    console.log(w + 'true')
-                } else {
-                    isMatch.push(false);
-                    console.log(w + 'false') 
-                }
+ 
+                //} else {
+                //    isMatch.push(false);
+                //    console.log(w + 'false') 
+                //}
             })
+            console.log(w)
+            if (msg.match(w))
+                isMatch.push(true)
             
             if (isMatch.includes(true, true)) {
                 
