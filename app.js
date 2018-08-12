@@ -61,23 +61,33 @@ function handleEvent(event) {
         if (word.length > 1) {
             let isMatch = new Array();
             //word.forEach(function (value, index) {
-            word = item.keyword.replace('_', '?')
-            console.log(word)
-            let w = new RegExp(word);//contain word
-                
-                if (w.test(msg)) 
-                    isMatch.push(true)
-                //} else {
-                //    isMatch.push(false);
-                //    console.log(w + 'false') 
-                //}
-            //})
-            console.log(isMatch)
-            if (isMatch.includes(true, true)) {
-                
+
+
+            let w = new RegExp('(?=.*' + word[0] + ')(?=.*' + word[1] + ')');
+            if (w.test(msg)) {
                 selectAnswer = Math.floor(Math.random() * item.answer.length)
                 replyAnswer = item.answer[selectAnswer]
             }
+
+
+            //console.log(neighbor.test("???????????????"));
+
+            //word = item.keyword.replace('_', '?')
+            //console.log(word)
+            //let w = new RegExp(word);//contain word
+
+            //if (w.test(msg))
+            //    isMatch.push(true)
+            ////} else {
+            ////    isMatch.push(false);
+            ////    console.log(w + 'false') 
+            ////}
+            ////})
+            //console.log(isMatch)
+            //if (isMatch.includes(true, true)) {
+
+                
+            //}
         } else {
             if (msg.includes(item.keyword)) {
                 if (!item.hasOwnProperty('refer')) {
