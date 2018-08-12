@@ -62,14 +62,17 @@ function handleEvent(event) {
             let isMatch = new Array();
             word.forEach(function (value, index) {
                 let w = new RegExp(value);//contain word
-
+                
                 if (msg.match(w)) {
+                    
                     isMatch.push(true);
+                    console.log(w + 'true')
                 } else {
                     isMatch.push(false);
+                    console.log(w + 'false') 
                 }
             })
-            console.log(isMatch)
+            
             if (isMatch.includes(true, true)) {
                 
                 selectAnswer = Math.floor(Math.random() * item.answer.length)
