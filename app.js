@@ -63,7 +63,7 @@ function handleEvent(event) {
             let w = ''
             word.forEach(function (value, index) {
                 let reg = new RegExp(value)//contain word
-                w = reg[0] + reg[1]//contain word
+                w += reg//contain word
                 
  
                 //} else {
