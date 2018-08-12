@@ -65,7 +65,7 @@ function handleEvent(event) {
             console.log(word)
             let w = new RegExp(word);//contain word
                 
-                if (msg.match(w)) 
+                if (msg.test(w)) 
                     isMatch.push(true)
                 //} else {
                 //    isMatch.push(false);
