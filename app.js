@@ -60,21 +60,19 @@ function handleEvent(event) {
 
         if (word.length > 1) {
             let isMatch = new Array();
-            let w = ''
-            word.forEach(function (value, index) {
-                let reg = new RegExp(value)//contain word
-                w += reg//contain word
+            //word.forEach(function (value, index) {
+            word = item.keyword.replace('_', '?')
+            console.log(word)
+            let w = new RegExp(word);//contain word
                 
- 
+                if (msg.match(w)) 
+                    isMatch.push(true)
                 //} else {
                 //    isMatch.push(false);
                 //    console.log(w + 'false') 
                 //}
-            })
-            console.log(w)
-            if (msg.match(w))
-                isMatch.push(true)
-            
+            //})
+            console.log(isMatch)
             if (isMatch.includes(true, true)) {
                 
                 selectAnswer = Math.floor(Math.random() * item.answer.length)
