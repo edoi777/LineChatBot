@@ -59,37 +59,22 @@ function handleEvent(event) {
         let word = item.keyword.split("_");
 
         if (word.length > 1) {
-            let isMatch = new Array();
-            //word.forEach(function (value, index) {
-
-
             let w = new RegExp('(?=.*' + word[0] + ')(?=.*' + word[1] + ')');
             console.log(w)
             if (w.test(msg)) {
-                console.log(item.answer.length)
-                selectAnswer = Math.floor(Math.random() * item.answer.length)
-                replyAnswer = item.answer[selectAnswer]
+                if (!item.hasOwnProperty('refer')) {
+                    selectAnswer = Math.floor(Math.random() * item.answer.length)
+                    replyAnswer = item.answer[selectAnswer]
+                }
+                else {
+                    for (let subitem of jsonData) {
+                        if (item.refer === subitem.keyword) {
+                            selectAnswer = Math.floor(Math.random() * subitem.answer.length)
+                            replyAnswer = subitem.answer[selectAnswer]
+                        }
+                    }
+                }
             }
-
-
-            //console.log(neighbor.test("???????????????"));
-
-            //word = item.keyword.replace('_', '?')
-            //console.log(word)
-            //let w = new RegExp(word);//contain word
-
-            //if (w.test(msg))
-            //    isMatch.push(true)
-            ////} else {
-            ////    isMatch.push(false);
-            ////    console.log(w + 'false') 
-            ////}
-            ////})
-            //console.log(isMatch)
-            //if (isMatch.includes(true, true)) {
-
-                
-            //}
         } else {
             if (msg.includes(item.keyword)) {
                 if (!item.hasOwnProperty('refer')) {
