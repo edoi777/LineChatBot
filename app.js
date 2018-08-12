@@ -64,7 +64,9 @@ function handleEvent(event) {
 
 
             let w = new RegExp('(?=.*' + word[0] + ')(?=.*' + word[1] + ')');
+            console.log(w)
             if (w.test(msg)) {
+                console.log(item.answer.length)
                 selectAnswer = Math.floor(Math.random() * item.answer.length)
                 replyAnswer = item.answer[selectAnswer]
             }
