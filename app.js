@@ -51,7 +51,7 @@ function handleEvent(event) {
 
     let msg = event.message.text
     let selectAnswer = 0
-    let replyAnswer = '555555'
+    let replyAnswer = '??????????????'
     let echo = {}
 
     jsonData.forEach(function (item, index) {
