@@ -93,6 +93,7 @@ function handleEvent(event) {
 
     })
 
+
     console.log(`humen-- ${msg} | bot-- ${replyAnswer}`)
 
     // create a echoing text message
