@@ -60,7 +60,6 @@ function handleEvent(event) {
 
         if (word.length > 1) {
             let w = new RegExp('(?=.*' + word[0] + ')(?=.*' + word[1] + ')');
-            console.log(w)
             if (w.test(msg)) {
                 if (!item.hasOwnProperty('refer')) {
                     selectAnswer = Math.floor(Math.random() * item.answer.length)
